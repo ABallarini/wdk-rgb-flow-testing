@@ -1,4 +1,4 @@
-# Payment Flow: RLN and WDK
+# End-to-End Payment Flow: RLN and WDK
 
 This project describes the testing flow between the [RGB Lightning Node (RLN)](https://github.com/UTEXO-Protocol/rgb-lightning-node) using its REST API and the [WDK RGB Lightning library](https://github.com/UTEXO-Protocol/wdk-rgb-lightning) acting as an embedded mobile node. 
 
@@ -14,11 +14,6 @@ A core design principle demonstrated in this flow is the separation of concerns 
 ## Prerequisites and External Steps
 
 To successfully run the `e2e-payment-flow-wdk-rgb.js` script and test it locally, several services must be orchestrated outside of the Node.js environment.
-
-### Local Installation and Dependencies
-
-* **WDK Dependency:** The path for the WDK dependency (`@utexo/rgb-lightning-node-nodejs`) needs to be changed in the `package.json` according to where it is locally installed and built on your system. A new version will soon be released so it can be easily downloaded via `npm`.
-* **RGB Lightning Node:** Follow the installation instructions for the RGB Lightning Node here: [https://github.com/UTEXO-Protocol/rgb-lightning-node#install](https://github.com/UTEXO-Protocol/rgb-lightning-node#install).
 
 ### 0. Environment Variables
 Create a `.env` file in the root of the project using the `.env.example` as a template. Fill in the required variables such as passwords for Alice and Bob, as well as the Bitcoin connection details. For the local bitcoin configurations look at the [RGB Lightning Node (RLN)](https://github.com/UTEXO-Protocol/rgb-lightning-node) repo.
@@ -86,6 +81,12 @@ The `e2e-payment-flow-wdk-rgb.js` script automates the following interactions be
     * Alice (RLN) creates colorable UTXOs and issues a new RGB NIA asset.
     * Bob (WDK) prepares colorable UTXOs and creates a blind receive invoice.
     * Alice sends the newly issued RGB asset to Bob.
+
+## Signet Testing
+
+While this document outlines the local Regtest implementation, the E2E flow can also be executed against the public UTEXO Signet network. Testing on Signet introduces real-world network conditions, remote indexers, and Lightning Service Provider (LSP) routing topologies.
+
+For detailed instructions, architecture changes, and troubleshooting specific to the public Signet network, please see the [Signet Implementation Guide](./README.signet.md).
 
 ## Rerunning the Test
 
